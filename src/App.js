@@ -13,7 +13,7 @@ import Product from "./Containers/Product";
 
 class App extends Component {
   render() {
-    const isLoggedIn = () => false;
+    const isLoggedIn = () => true;
     return (
       <div>
         <div>
@@ -23,19 +23,19 @@ class App extends Component {
         </div>
         <div>
           <Switch>
-          <Route path="/product/:id/:name" render={(routerProps) => {
+          <Route path="/product/:id" render={(routerProps) => {
                 if(isLoggedIn()) {
                   return <Product {...routerProps} />;
                 } else {
-                  <Redirect to="/login" />
+                  return <Redirect to="/login" />
                 }
                 
               }} />
             <Route path="/product" render={(routerProps) => {
                 if(isLoggedIn()) {
-                  return <Product {...routerProps} />;
+                  return <ProductList {...routerProps} />;
                 } else {
-                  <Redirect  to="/login" />
+                  return <Redirect  to="/login" />
                 }
               }} />
             <Route
